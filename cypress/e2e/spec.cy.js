@@ -1,46 +1,31 @@
 /// <reference types="cypress" />
 
 describe('test calendart', () => {
-  it.only('Find and print how many empty fields there are for each month', () => {
+  beforeEach(() => {
     cy.visit('/kalendar-2022-srb.php')
+  })
+
+  it('Find and print how many empty fields there are for each month', () => {
+    cy.visit('/kalendar-2022-srb.php')
+    Cypress.env('total', 0)
     cy.get('table').each(($tables) => {
-      cy.wrap($tables)
-        .find('thead>tr:first-child>th')
-        .then(($nameOfMonth) => {
-          let nameM = $nameOfMonth.text()
-          cy.wrap($tables)
-            .find('tbody tr')
-            .then((rows) => {
-              let numOfRows = rows.length
-              cy.wrap($tables)
-                .find('tbody td>div')
-                .then((td) => {
-                  let numOfFillInDays = td.length
-                  cy.wrap($tables)
-                    .find('tbody td')
-                    .then((allDays) => {
-                      let allD = allDays.length
-                      let emptyDays = allD - numOfFillInDays - numOfRows
-                      cy.wrap(emptyDays).as('tst')
-                      cy.log(
-                        `The number of empty fields is ${emptyDays} for month ${nameM}`,
-                      )
-                    })
-                })
-            })
-        })
+      const name = $tables.find('.month-title').text()
+      const empty = $tables.find('tbody td:empty').length
+      cy.log(`The number of empty fields is ${empty} for month ${name}`)
+      Cypress.env('total', Cypress.env('total') + empty)
     })
   })
 
-  it.only('Count and print how many empty fields there are for entire year', () => {
+  it('Count and print how many empty fields there are for entire year', () => {
     cy.visit('/kalendar-2022-srb.php')
-    cy.get('td[class="day new"]').then(($t) => {
-      cy.get('td[class="day old"]').then(($s) => {
-        let a = $t.length
-        let b = $s.length
-        let c = a + b
-        cy.log(`The number of empty fields is ${c}`)
+    cy.get('td.day.new').its('length').as('new')
+    cy.get('td.day.old')
+      .its('length')
+      .as('old')
+      .then(function () {
+        expect(this.new + this.old, 'year to month').to.equal(
+          Cypress.env('total'),
+        )
       })
-    })
   })
 })

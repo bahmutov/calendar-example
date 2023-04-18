@@ -1,16 +1,16 @@
 {
   "name": "calendar-example",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Simplifying a Cypress test example",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.9.0",
+    "cypress": "^12.10.0",
     "cypress-map": "^1.17.0",
     "prettier": "^2.8.7"
   }

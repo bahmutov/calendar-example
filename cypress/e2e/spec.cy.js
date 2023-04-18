@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 
-describe('test calendart', () => {
+describe('test calendar', () => {
   beforeEach(() => {
     cy.visit('/kalendar-2022-srb.php')
+    cy.get('.months-container').should('have.css', 'opacity', '1')
   })
 
   it('Find and print how many empty fields there are for each month', () => {
@@ -16,7 +17,7 @@ describe('test calendart', () => {
   })
 
   it('Count and print how many empty fields there are for entire year', () => {
-    cy.get('td.day.new,td.day.old')
+    cy.get('td.day.new, td.day.old')
       .should('be.visible')
       .its('length')
       .should('equal', Cypress.env('total'))

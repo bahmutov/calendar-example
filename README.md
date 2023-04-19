@@ -4,6 +4,8 @@
 
 ![Calendar test](./images/calendar.png)
 
+📝 Read the blog post [Simplify Cypress Calendar Test Example](https://glebbahmutov.com/blog/simplify-calendar-test/).
+
 ## Small print
 
 Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2023

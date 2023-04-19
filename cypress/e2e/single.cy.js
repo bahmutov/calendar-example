@@ -7,9 +7,9 @@ describe('test calendar', () => {
 
     let total = 0
     cy.get('table.month')
-      .each(($tables) => {
-        const name = $tables.find('.month-title').text()
-        const empty = $tables.find('tbody td:empty').length
+      .each(($table) => {
+        const name = $table.find('.month-title').text()
+        const empty = $table.find('tbody td:empty').length
         cy.log(`The number of empty fields is ${empty} for month ${name}`)
         total += empty
       })

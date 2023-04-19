@@ -12,9 +12,5 @@ module.exports = defineConfig({
       'googleads.g.doubleclick.net',
       'pagead2.googlesyndication.com',
     ],
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-      // and load any plugins that require the Node environment
-    },
   },
 })
